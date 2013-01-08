@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" manifest="offline.appcache"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <style type="text/css">
+            canvas { -ms-touch-action: none; }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <img src="img/gameLogo.png"/>
+                <nav>
+                    <ul>
+                        <li><a class="hoverNav transitionLink" href="index.html">Home</a></li>
+                        <li><a class="hoverNav transitionLink" href="play.html">Play</a></li>
+                        <li><a class="hoverNav transitionLink" href="about.html#mainPanel">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div id="mainPanel" class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>      
+                        <h1>Play</h1>
+                    </header>
+                    <section>
+                        <div class="orangeTop greenBackground" style="width: 100%; height: auto;">
+                            <div id="c2canvasdiv" style="margin: 0 auto; width: 640px; height: 480px;" class="center">
+
+                                <!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+                                ID the runtime looks for in the jQuery ready event (above). -->
+                                <canvas id="c2canvas" width="640" height="480" class="center">
+                                    <!-- This text is displayed if the visitor's browser does not support HTML5.
+                                    You can change it, but it is a good idea to link to a description of a browser
+                                    and provide some links to download some popular HTML5-compatible browsers. -->
+                                    Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+                                    <br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+                                    <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+                                    <a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+                                    <a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
+                                    <a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/>
+                                </canvas>
+
+                            </div>
+                        </div>
+                    </section>                    
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <p>© 2012-2013 ShootSomething.com</p>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/jquery.transit.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <script>
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+            (function(d, t) {
+                var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+                g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g, s)
+            }(document, 'script'));
+        </script>
+
+        <script>
+            window.onload = inicializar();
+            function inicializar()
+            {
+                $("#mainPanel").css("opacity", "0");
+                $("#mainPanel").css("scale", "1.2");
+                $("#mainPanel").transition({
+                    opacity: 1,
+                    scale: 1
+                });
+                $(".transitionLink").click(function()
+                {
+                    $("#mainPanel").transition({
+                        opacity: 0,
+                        scale: 1.2
+                    });
+                });
+                $(".hoverNav").mouseover(function()
+                {
+                    $(this).transition({scale: [1.2]});
+                    $(this).css("background-color", "#6AFA32");
+                }).mouseout(function()
+                {
+                    $(this).css("background-color", "#FE5D00");
+                    $(this).transition({scale: [1]});
+                });
+                //timeToPlay();
+            }
+            function timeToPlay()
+            {
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = "#59B8BD";
+                var w = canvas.width;
+                var h = canvas.height;
+                var centerX = w / 2;
+                var centerY = h / 2;
+                ctx.fillRect(0, 0, w, h);
+
+                ctx.fillStyle = "#6AFA32";
+                ctx.fillRect(0, h - 20, w, 20);
+
+                var imgNube = new Image();   // Create new img element                
+                imgNube.src = 'img/nube.png'; // Set source path
+                imgNube.onload = function() {
+                    ctx.drawImage(imgNube, centerX, centerY - 25);
+                    ctx.drawImage(imgNube, centerX - 50, centerY - 50);
+                    ctx.drawImage(imgNube, centerX - 100, centerY - 75);
+                    ctx.drawImage(imgNube, centerX - 100, centerY - 25);
+                    ctx.drawImage(imgNube, centerX - 150, centerY - 50);
+                    ctx.drawImage(imgNube, centerX + 50, centerY - 50);
+                    ctx.drawImage(imgNube, centerX + 100, centerY - 75);
+                    ctx.drawImage(imgNube, centerX + 100, centerY - 25);
+                };
+
+                var imgCesped1 = new Image();   // Create new img element                
+                imgCesped1.src = 'img/cesped1.png'; // Set source path
+                imgCesped1.onload = function() {
+                    var imgCesped2 = new Image();   // Create new img element                
+                    imgCesped2.src = 'img/cesped2.png'; // Set source path
+                    imgCesped2.onload = function() {
+                        var x = 0;
+                        for (var i = 0; i < w / 12; i++)
+                        {
+                            if (i % 2 === 0)
+                                ctx.drawImage(imgCesped1, x, h - 28);
+                            else
+                                ctx.drawImage(imgCesped2, x, h - 28);
+                            x += 12;
+                        }
+                    };
+                };
+            }
+        </script>
+        <script src="c2runtime.js"></script>
+        <script>
+            jQuery(window).resize(function() {
+                if (window.c2resizestretchmode === 1)
+                {
+                    window.c2resizestretchmode = 2;     // put back when breaking back out of fullscreen
+                    var canvas = document.getElementById("c2canvas");
+                    window.c2oldcanvaswidth = canvas.width;
+                    window.c2oldcanvasheight = canvas.height;
+                    window.c2eventtime = Date.now();
+                    var w = jQuery(window).width();
+                    var h = jQuery(window).height();
+                    cr_sizeCanvas(w, h);
+                }
+                else if (window.c2resizestretchmode === 2)
+                {
+                    // Size event fires twice on FF + Chrome, ignore second trigger
+                    if (Date.now() > window.c2eventtime + 50)
+                    {
+                        window.c2resizestretchmode = 0;
+                        cr_sizeCanvas(window.c2oldcanvaswidth, window.c2oldcanvasheight);
+                    }
+                }
+            });
+
+            // Start the Construct 2 project running on window load.
+            jQuery(document).ready(function()
+            {
+                // Create new runtime using the c2canvas
+                cr_createRuntime("c2canvas");
+            });
+
+            // Pause and resume on page becoming visible/invisible
+            function onVisibilityChanged() {
+                if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+                    cr_setSuspended(true);
+                else
+                    cr_setSuspended(false);
+            }
+            ;
+
+            document.addEventListener("visibilitychange", onVisibilityChanged, false);
+            document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+            document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+            document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <img src="img/gameLogo.png"/>
+                <nav>
+                    <ul>
+                        <li><a class="hoverNav transitionLink" href="index.html">Home</a></li>
+                        <li><a class="hoverNav transitionLink" href="play.html#mainPanel">Play</a></li>
+                        <li><a class="hoverNav transitionLink" href="about.html#mainPanel">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div id="mainPanel" class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>      
+                        <h1>Home</h1>
+                        <h2>Welcome</h2>
+                        <p>This is an easy game made just to enjoy your free-time. Hint: Just Shoot!<br/></p>
+                        <div id="myCarousel" class="carousel slide orangeTop">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item center greenBackground">
+                                    <img class="center" src="img/playingGame1.png" />
+                                    <div class="carousel-caption">
+                                        <h4>...Monsters will come to you!</h4>
+                                        <p>Be careful with the monsters!</p>
+                                    </div>
+                                </div>
+                                <div class="item center greenBackground">
+                                    <img class="center" src="img/playingGame2.png" />
+                                    <div class="carousel-caption">
+                                        <h4>Let's see how strong they are!</h4>
+                                        <p>Try to kill the monsters by shooting at them. Every time they get shooted, they become weaker!</p>
+                                    </div>
+                                </div>
+                                <div class="item center greenBackground">
+                                    <img class="center" src="img/playingGame3.png" />
+                                    <div class="carousel-caption">
+                                        <h4>After 5 shoots they get killed</h4>
+                                        <p>If you shoot a monster 5 times you can kill one!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carousel nav -->
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                        </div>
+                    </header>
+                    <section> 
+                        <h2>...Hope you have a blast!</h2>
+                        <a id="linkPlay" class="btn btn-primary btn-large transitionLink" href="play.html#mainPanel">
+                            Let's Play!
+                        </a>
+                    </section>                    
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <p>© 2012-2013 ShootSomething.com</p>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/jquery.transit.min.js"></script>
+        
+        <script src="js/main.js"></script>
+
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+        
+        <script>
+            window.onload = inicializar();
+            function inicializar()
+            {
+                $("#mainPanel").css("opacity","0");
+                $("#mainPanel").css("scale","1.2");
+                $("#mainPanel").transition({
+                    opacity: 1,
+                    scale: 1                    
+                });
+                $(".transitionLink").click(function()
+                {
+                    $("#mainPanel").transition({
+                        opacity: 0,
+                        scale: 1.2
+                    });
+                });
+                $(".hoverNav").mouseover(function()
+                {
+                    $(this).transition({ scale: [1.2] });
+                    $(this).css("background-color","#6AFA32");
+                }).mouseout(function()
+                {
+                    $(this).css("background-color","#FE5D00");
+                    $(this).transition({ scale: [1] });
+                });
+                $("#linkPlay").mouseover(function()
+                {
+                    $(this).transition({
+                        opacity: 0.5,
+                        scale: 1.2
+                    });
+                }).mouseout(function()
+                {
+                    $(this).transition({
+                        opacity: 1,
+                        scale: 1
+                    });
+                });
+            }
+        </script>
+    </body>
+</html>
